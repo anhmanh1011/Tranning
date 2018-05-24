@@ -65,8 +65,9 @@ public class Main {
 			System.out.println("Nhap 0 de OUT ");
 			System.out.println("Nhap 1 de them  1 programmer vao danh sach nhan vien");
 			System.out.println("Nhap 2 de them 1  tester ");
-			System.out.println("Nhap 3 de  xem so luong programmer co loi bug < 5 ");
-			System.out.println("Nhap 4 de  xem tester co time OT cao Nhat ");
+			System.out.println("Nhap 3 de  xem Tong Luong cua nhan vien  ");
+			System.out.println("Nhap 4 de  xem so luong programmer co loi bug < 5 ");
+			System.out.println("Nhap 5 de  xem tester co time OT cao Nhat ");
 			System.out.println("Moi Nhap vao Lua Chon");
 			luachon = new Scanner(System.in).nextInt();
 			switch (luachon) {
@@ -83,17 +84,23 @@ public class Main {
 				list.add(tester);
 				break;
 				
+				
 			case 3:
+				System.out.println("\nTong luong cua tat ca nhan vien  la : ");
+				System.out.println(TongLuong(list));
+				break;
+				
+			case 4:
 				System.out.println("\nso luong programmer co loi bug < 5 la : ");
 				System.out.println(loiDuoi5(list));
 				break;
 				
-			case 4:
+			case 5:
 				System.out.println("\n thong tin nhan vien co time OT cao nhat  la : ");
 				System.out.println(timeOTMax(list));
 				
 				break;				
-
+				
 			default:
 				break;
 			}
@@ -103,12 +110,24 @@ public class Main {
 		
 		
 	}
+	
+	public static double TongLuong(List<NhanVien> list) {
+		
+		double  tongLuong  = 0;
+		for(int i = 0; i < list.size(); i++) {
+			
+			tongLuong += list.get(i).tinhLuong();
+			
+		}
+		
+		return tongLuong;
+		
+	}
 
 	public static void main(String[] args) {
 
-	
 		Menu();
-		
+
 
 	}
 
