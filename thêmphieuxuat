@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Them phieu de xuat</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/PhieuDeXuat/themphieudexuat.css}" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<style>
+table, th, td {
+	border: 1px solid #cccccc;
+	border-collapse: collapse;
+}
+th, td {
+	text-align: center;
+}
+
+input, textarea {
+	width: 100%;
+	height: 100%;
+}
+</style>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script>
+	
+	$(document).ready(function(){
+        $(".add-row").click(function(){
+            var markup = `
+            	<tr>
+				<th>1</th>
+				<td class="t4">
+				<input class="t5" type="checkbox" name="check" value="1" /></td>
+				<th class="t6">
+					<textarea type="text" id="" value="" />
+				</th>
+				<th class="t7"><input type="text" /></th>
+				<th class="t7"><input name="SoLuong1"
+					type="number" onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
+				<th  class="t7"><input name="DonGia1"
+					type="number"
+					onKeyUp="ThanhTien1.value=SoLuong1.value*DonGia1.value" /></th>
+				<th clas="t7" ><input name="ThanhTien1" /></th>
+				<th class="t7" >
+					<textarea type="text" id=""
+						value="" /></th>
+			</tr>
+			`;
+            $("#table1 tbody").append(markup);
+        });
+         
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $("#table1 tbody").find('input[name="check"]').each(function(){
+                if($(this).is(":checked")){
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+</script>
+</head>
+<body>
+	<!-- header -->
+	<section class="css-header">
+		<div class="row">
+			<div class="col-sm-3">
+				<a th:href="@{/}" style="color: blue;">Home</a>
+			</div>
+			<div class="col-sm-4">
+				<input class="search" type="text" name="" placeholder="Search...." />
+			</div>
+			<div class="col-sm-4">
+				<h4>NCC Soft</h4>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="">
+						<div class="">
+							<h2 class="themPDX1">Phiếu đề xuất</h2>
+							<div class="clearfix"></div>
+						</div>
+						<div class="">
+							<form class="form-horizontal form-label-left input_mask"
+								method="POST">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Kính
+											gửi</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Nhập Người nhận"
+												name="" id="" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Người
+											đề xuất </label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<input class="form-control" placeholder="Tên người đề xuất"
+												name="" id="" type="text" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Nội
+											dung đề xuất</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea id="" class="form-control" name=""
+												placeholder="Nội dung đề xuất"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
+											bắt đầu</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class="input-group date">
+												<input style="width: 395px;" type='date' name="NgayBatDau"
+													class="form-control" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">hoàn
+											thành</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<div class="input-group date">
+												<input style="width: 395px;" type='date'
+													name="NgayHoanThanh" class="form-control" />
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12">Ý
+											kiến lãnh đạo</label>
+										<div class="col-md-9 col-sm-9 col-xs-12">
+											<textarea id="" class="form-control" name=""
+												placeholder="Ý kiến lãnh đạo"></textarea>
+										</div>
+									</div>
+								</div>
+								<form class="themPDX2">
+									<table id="table1" style="width: 100%">
+										<thead>
+											<tr>
+												<th style="width: 20px">STT</th>
+												<th>Chọn</th>
+												<th>Nội dung đề xuất</th>
+												<th class="t1">Số ngày</th>
+												<th class="t1">SL</th>
+												<th class="t2">Đơn giá</th>
+												<th class="t3">Thành tiền</th>
+												<th class="t3">Ghi Chú</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th>1</th>
+												<td class="t4">
+												<input class="t5" type="checkbox" name="check" value="1" /></td>
+												<th class="t6">
+													<textarea type="text" id="" value="" />
+												</th>
+												<th class="t7"><input type="text" /></th>
+												<th class="t7"><input name="SoLuong"
+													type="number" onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
+												<th  class="t7"><input name="DonGia"
+													type="number"
+													onKeyUp="ThanhTien.value=SoLuong.value*DonGia.value" /></th>
+												<th class="t7" ><input name="ThanhTien" /></th>
+												<th class="t7" >
+													<textarea type="text" id=""
+														value="" /></th>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th></th>
+												<th colspan="5">Cộng</th>
+												<th class="t8" ><input type="text" /></th>
+												<th class="t8" ><input type="text" /></th>
+											</tr>
+											<tr>
+												<th></th>
+												<th colspan="5">Đề xuất ngày mua</th>
+												<th class="t8" ><input type="text"
+													id="datepicker3" /></th>
+												<th class="t8" ><input type="text" /></th>
+											</tr>
+										</tfoot>
+									</table>
+									<div>
+										<button id="themPDX3"
+											type="button" name="" class="btn btn-success add-row"
+											value="Thêm hàng">Thêm Hàng</button>
+										<button id="themPDX3" type="button" name="" class="btn btn-danger delete-row"
+											value="Xóa hàng">Xóa Hàng</button>
+									</div>
+								</form>
+								<div class="themPDX4">
+									<table style="text-align: center;">
+										<tr>
+											<th>Tên người đề nghị</th>
+											<th>Tên kế toán</th>
+											<th>tên giám đốc</th>
+										</tr>
+										<tr>
+											<th class="t9"><input
+												type="text" /></th>
+											<th class="t9"><input
+												type="text" /></th>
+											<th class="t9"><input
+												type="text" /></th>
+										</tr>
+									</table>
+								</div>
+								<!-- <div class="ln_solid clearfix"></div> -->
+								<div class="form-group" style="margin-top: 10px;">
+									<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-5">
+										<button type="submit" name="" class="btn btn-success">Thêm
+											mới</button>
+										<a class="btn btn-danger" th:href="@{/}">Hủy</a>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
